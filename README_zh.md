@@ -319,7 +319,6 @@ lat = np.round(np.arange( 36.00,  42.60 + 1e-6, 0.01), 2)  # 长度 661
 
 ## 联系方式
 
-维护者：**田锦煜（Tian Jinyu）**，北京航空航天大学第六学院
-GitHub：[@Tanhhhhtjy](https://github.com/Tanhhhhtjy)
+维护者：**田锦煜（Tian Jinyu）**
 
 如遇 bug、链接失效或数据质量问题，请在本仓库提 Issue。

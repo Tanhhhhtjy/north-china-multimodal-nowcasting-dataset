@@ -361,8 +361,7 @@ the [MIT License](LICENSE).
 
 ## Contact
 
-Maintainer: **Tian Jinyu (田锦煜)**, Department 6, Beihang University
-GitHub: [@Tanhhhhtjy](https://github.com/Tanhhhhtjy)
+Maintainer: **Tian Jinyu (田锦煜)**
 
 Please open an issue on this repository for bug reports, broken links, or
 dataset-quality questions.
