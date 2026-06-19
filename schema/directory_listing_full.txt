@@ -1,0 +1,65 @@
+# Directory Listing — `dataset_for_team/` (Full set, 106 GB)
+
+After extracting `dataset_full.zip` you obtain:
+
+```
+dataset_for_team/
+├── run_log.json                                            # 1 file (pipeline run summary, incl. any skipped frames)
+│
+├── npz/                                                    # ~13 500 files, ~106 GB
+│   ├── 2023-05-01T00-00-00.npz
+│   ├── 2023-05-01T00-06-00.npz
+│   ├── ... (one per timestamp, 6-min cadence, May–Aug 2023)
+│   └── 2023-08-31T23-54-00.npz
+│
+└── png/                                                    # ~94 500 files
+    ├── radar/                                              # ~13 500 files
+    ├── pwv_dense/                                          # ~13 500 files
+    ├── tem_station_dense/                                  # ~13 500 files
+    ├── rhu_station_dense/                                  # ~13 500 files
+    ├── prs_station_dense/                                  # ~13 500 files
+    ├── era5_t_925/                                         # ~13 500 files
+    └── era5_q_925/                                         # ~13 500 files
+
+Total: ~108 000 files, ~106 GB
+```
+
+> **Note**: the **Full** archive contains only the per-frame `npz/` and the
+> per-modality `png/` directories. The aggregate visualisations (`mosaic/`,
+> `stations_overlay/`, `samples/`) are produced **only** for the MVP subset
+> because rendering them for every frame in the full set provides no
+> additional value beyond what the per-frame artefacts already give. If you
+> need mosaics or case PDFs for arbitrary timestamps, run the rendering
+> pipeline yourself from the per-frame `.npz` files.
+
+## Frame count per split
+
+Split labels follow the parent project's `manifest.csv`:
+
+| Split | # Days | # Frames (nominal) |
+|---|---:|---:|
+| `train` | 74 | 10 656 |
+| `val` | 8 | 1 152 |
+| `test_robust` | 8 | 1 152 |
+| `event_test` | 4 | 576 |
+| **Total** | **94** | **13 536** |
+
+A small number of frames is skipped due to radar gaps; the exact count of
+successful frames is in `run_log.json`. The MVP subset is exactly the
+`event_test` split.
+
+## Per-modality file count and approximate size
+
+| Subdirectory | File count | Approx size per file | Total |
+|---|---:|---:|---:|
+| `npz/` | ~13 500 | 8.6 MB | ~106 GB |
+| `png/radar/` | ~13 500 | 50–150 KB | ~1 GB |
+| `png/pwv_dense/` | ~13 500 | 50–80 KB | ~700 MB |
+| `png/tem_station_dense/` | ~13 500 | 50–80 KB | ~700 MB |
+| `png/rhu_station_dense/` | ~13 500 | 50–80 KB | ~700 MB |
+| `png/prs_station_dense/` | ~13 500 | 50–80 KB | ~700 MB |
+| `png/era5_t_925/` | ~13 500 | 30–60 KB | ~500 MB |
+| `png/era5_q_925/` | ~13 500 | 30–60 KB | ~500 MB |
+
+The dominant size cost is the `.npz` arrays. If you only need PNG
+visualisations, you can subset by modality after extracting.

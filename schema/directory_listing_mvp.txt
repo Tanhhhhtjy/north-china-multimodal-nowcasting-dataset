@@ -1,0 +1,65 @@
+# Directory Listing — `dataset_for_team_mvp/` (MVP subset, 5.3 GB)
+
+After extracting `dataset_mvp_v2.zip` you obtain:
+
+```
+dataset_for_team_mvp/
+├── run_log.json                                            # 1 file
+│
+├── npz/                                                    # 572 files, ~5 GB
+│   ├── 2023-07-29T00-00-00.npz
+│   ├── 2023-07-29T00-06-00.npz
+│   ├── ... (one per timestamp, 6-min cadence)
+│   └── 2023-08-01T23-54-00.npz
+│
+├── png/                                                    # 4004 files, ~230 MB
+│   ├── radar/                                              # 572 files (one per timestamp)
+│   ├── pwv_dense/                                          # 572 files (note: subdir naming for PWV varies in MVP)
+│   ├── tem_station_dense/                                  # 572 files
+│   ├── rhu_station_dense/                                  # 572 files
+│   ├── prs_station_dense/                                  # 572 files
+│   ├── era5_t_925/                                         # 572 files
+│   └── era5_q_925/                                         # 572 files
+│
+├── mosaic/                                                 # 572 files, ~420 MB
+│   ├── 2023-07-29T00-00-00.png                             # 7-modality composite per frame
+│   └── ...
+│
+├── stations_overlay/                                       # 3 files, ~1.4 MB
+│   ├── 2023-07-29T12-00-00.png                             # Radar background + red dots (PWV stations) + orange dots (surface stations)
+│   ├── 2023-07-30T09-00-00.png
+│   └── 2023-08-01T06-00-00.png
+│
+└── samples/                                                # 2 files, ~5 MB
+    ├── case_2023-07-30_storm_evolution.pdf                 # 8 timestamps × 7 modalities vector PDF
+    └── case_2023-07-30_radar.gif                           # 40-frame radar animation @ 5 fps
+
+Total: 5152 files, 5.3 GB
+```
+
+## File counts
+
+| Subdirectory | File count | Approximate size |
+|---|---:|---:|
+| `npz/` | 572 | 4.7 GB |
+| `png/radar/` | 572 | 30 MB |
+| `png/pwv_dense/` | 572 | 30 MB |
+| `png/tem_station_dense/` | 572 | 30 MB |
+| `png/rhu_station_dense/` | 572 | 30 MB |
+| `png/prs_station_dense/` | 572 | 30 MB |
+| `png/era5_t_925/` | 572 | 30 MB |
+| `png/era5_q_925/` | 572 | 30 MB |
+| `mosaic/` | 572 | 421 MB |
+| `stations_overlay/` | 3 | 1.4 MB |
+| `samples/` | 2 | 5.4 MB |
+| `run_log.json` | 1 | 1 KB |
+| **Total** | **5 152** | **~5.3 GB** |
+
+## Timestamps included (4 convective storm days)
+
+- 2023-07-29 (144 frames)
+- 2023-07-30 (144 frames)
+- 2023-07-31 (140 frames — 4 skipped due to radar gap at 08:00–08:24 UTC)
+- 2023-08-01 (144 frames)
+
+Total = 572 valid frames out of 576 nominal (99.3 %).

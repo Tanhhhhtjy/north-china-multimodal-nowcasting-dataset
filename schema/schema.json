@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "North China Multimodal Nowcasting Dataset — per-frame .npz schema",
+  "description": "Schema for one .npz file in the dataset. Each file represents a single timestamp on the radar 6-min grid.",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp, e.g. '2023-07-30T09:00:00'",
+      "dtype": "<U19",
+      "shape": []
+    },
+    "radar_mmh": {
+      "description": "Radar-derived rain rate after dBZ -> mm/h conversion (Z = 300 R^1.4)",
+      "dtype": "float32",
+      "shape": [661, 701],
+      "units": "mm/h",
+      "physical_range": [0, 413],
+      "modality": "radar",
+      "form": "dense"
+    },
+    "pwv_dense": {
+      "description": "PWV interpolated from 176 GNSS stations via IDW(k=8, p=2) to the radar grid",
+      "dtype": "float32",
+      "shape": [661, 701],
+      "units": "kg/m^2",
+      "physical_range": [3.10, 79.45],
+      "modality": "pwv",
+      "form": "dense",
+      "interpolation": "idw_k8_p2"
+    },
+    "pwv_sparse_value": {
+      "description": "Raw PWV value at each of the 176 GNSS stations (NaN if missing; mask handles validity)",
+      "dtype": "float32",
+      "shape": [176],
+      "units": "kg/m^2",
+      "modality": "pwv",
+      "form": "sparse"
+    },
+    "pwv_sparse_lonlat": {
+      "description": "Station coordinates as (lon_deg, lat_deg)",
+      "dtype": "float32",
+      "shape": [176, 2],
+      "units": "degrees",
+      "modality": "pwv"
+    },
+    "pwv_sparse_mask": {
+      "description": "Validity mask per station: 1 = valid observation, 0 = missing",
+      "dtype": "float32",
+      "shape": [176],
+      "modality": "pwv"
+    },
+    "tem_dense": {
+      "description": "Surface temperature interpolated from 289 stations",
+      "dtype": "float32",
+      "shape": [661, 701],
+      "units": "celsius",
+      "physical_range": [3.04, 38.73],
+      "modality": "temperature",
+      "form": "dense",
+      "interpolation": "idw_k8_p2"
+    },
+    "tem_sparse_value": {
+      "dtype": "float32",
+      "shape": [289],
+      "units": "celsius",
+      "modality": "temperature",
+      "form": "sparse"
+    },
+    "tem_sparse_mask": {
+      "dtype": "float32",
+      "shape": [289],
+      "modality": "temperature"
+    },
+    "rhu_dense": {
+      "description": "Surface relative humidity interpolated from 289 stations",
+      "dtype": "float32",
+      "shape": [661, 701],
+      "units": "percent",
+      "physical_range": [9.02, 100.00],
+      "modality": "humidity",
+      "form": "dense",
+      "interpolation": "idw_k8_p2"
+    },
+    "rhu_sparse_value": {
+      "dtype": "float32",
+      "shape": [289],
+      "units": "percent",
+      "modality": "humidity"
+    },
+    "rhu_sparse_mask": {
+      "dtype": "float32",
+      "shape": [289],
+      "modality": "humidity"
+    },
+    "prs_dense": {
+      "description": "Surface pressure interpolated from 289 stations",
+      "dtype": "float32",
+      "shape": [661, 701],
+      "units": "hPa",
+      "physical_range": [775.80, 1015.41],
+      "modality": "pressure",
+      "form": "dense",
+      "interpolation": "idw_k8_p2"
+    },
+    "prs_sparse_value": {
+      "dtype": "float32",
+      "shape": [289],
+      "units": "hPa",
+      "modality": "pressure"
+    },
+    "prs_sparse_mask": {
+      "dtype": "float32",
+      "shape": [289],
+      "modality": "pressure"
+    },
+    "station_sparse_lonlat": {
+      "description": "Surface station coordinates, SHARED by tem/rhu/prs (same 289 stations)",
+      "dtype": "float32",
+      "shape": [289, 2],
+      "units": "degrees"
+    },
+    "era5_t_925": {
+      "description": "ERA5 temperature at 925 hPa, bilinearly upsampled from 0.25 deg to 0.01 deg",
+      "dtype": "float32",
+      "shape": [661, 701],
+      "units": "K",
+      "physical_range": [280.68, 308.48],
+      "modality": "era5_temperature",
+      "form": "dense",
+      "interpolation": "bilinear_0p25_to_0p01"
+    },
+    "era5_q_925": {
+      "description": "ERA5 specific humidity at 925 hPa, bilinearly upsampled from 0.25 deg to 0.01 deg",
+      "dtype": "float32",
+      "shape": [661, 701],
+      "units": "kg/kg",
+      "physical_range": [0.000838, 0.022122],
+      "modality": "era5_humidity",
+      "form": "dense",
+      "interpolation": "bilinear_0p25_to_0p01"
+    }
+  },
+  "required": [
+    "timestamp",
+    "radar_mmh",
+    "pwv_dense", "pwv_sparse_value", "pwv_sparse_lonlat", "pwv_sparse_mask",
+    "tem_dense", "tem_sparse_value", "tem_sparse_mask",
+    "rhu_dense", "rhu_sparse_value", "rhu_sparse_mask",
+    "prs_dense", "prs_sparse_value", "prs_sparse_mask",
+    "station_sparse_lonlat",
+    "era5_t_925", "era5_q_925"
+  ]
+}
