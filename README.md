@@ -1,5 +1,7 @@
 # North China Multimodal Nowcasting Dataset
 
+**Language**: **English** | [中文](README_zh.md)
+
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Region: North China](https://img.shields.io/badge/region-North%20China-blue.svg)](#spatial-domain)
 [![Period: May-Aug 2023](https://img.shields.io/badge/period-May--Aug%202023-blue.svg)](#temporal-coverage)
